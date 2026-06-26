@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rajasthan Trip Plan</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=boska@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg:#f7f6f2; --color-surface:#f9f8f5; --color-surface-2:#fbfbf9; --color-border:#d4d1ca;
+      --color-text:#28251d; --color-text-muted:#7a7974; --color-primary:#01696f; --color-primary-hover:#0c4e54;
+      --color-text-inverse:#f9f8f4; --shadow-sm:0 1px 2px rgba(0,0,0,.06); --shadow-md:0 8px 24px rgba(0,0,0,.08);
+      --radius-md:0.5rem; --radius-lg:0.75rem; --radius-xl:1rem; --font-body:'Satoshi',sans-serif; --font-display:'Boska',serif;
+      --content:1100px;
+    }
+    [data-theme="dark"] {
+      --color-bg:#171614; --color-surface:#1c1b19; --color-surface-2:#201f1d; --color-border:#393836;
+      --color-text:#cdccca; --color-text-muted:#979591; --color-primary:#4f98a3; --color-primary-hover:#227f8b;
+      --color-text-inverse:#171614; --shadow-sm:0 1px 2px rgba(0,0,0,.2); --shadow-md:0 10px 30px rgba(0,0,0,.35);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:var(--color-bg);color:var(--color-text)}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit}
+    .skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:var(--color-primary);color:var(--color-text-inverse);padding:.5rem .75rem;border-radius:var(--radius-md)}
+    .container{width:min(calc(100% - 2rem),var(--content));margin:auto}
+    header{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) 0;gap:var(--space-4)}
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+    .logo{width:34px;height:34px;border:1px solid var(--color-border);border-radius:50%;display:grid;place-items:center;background:var(--color-surface)}
+    .logo svg{width:22px;height:22px}
+    .brand strong{font-family:var(--font-display);font-size:var(--text-lg);font-weight:500}
+    .navlinks{display:flex;gap:1rem;flex-wrap:wrap}
+    .navlinks a{text-decoration:none;color:var(--color-text-muted);font-size:var(--text-sm)}
+    .navlinks a:hover{color:var(--color-primary)}
+    .theme-toggle{min-width:44px;min-height:44px;border:1px solid var(--color-border);border-radius:999px;padding:.6rem;background:var(--color-surface)}
+    .hero{padding:var(--space-12) 0 var(--space-10)}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-8);align-items:end}
+    .eyebrow{display:inline-block;padding:.4rem .75rem;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-border);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted)}
+    h1{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.02;margin:.8rem 0 1rem;font-weight:500;max-width:11ch}
+    .hero p{max-width:58ch;color:var(--color-text-muted)}
+    .hero-card{background:linear-gradient(180deg,var(--color-surface),var(--color-surface-2));border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-md)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-top:var(--space-6)}
+    .stat{padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+    .stat b{display:block;font-size:var(--text-lg)}
+    section{padding:var(--space-10) 0}
+    .section-head{display:flex;justify-content:space-between;gap:var(--space-4);align-items:end;margin-bottom:var(--space-6)}
+    .section-head h2{font-size:var(--text-xl);font-family:var(--font-display);font-weight:500;margin:0}
+    .section-head p{margin:0;color:var(--color-text-muted);max-width:60ch}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6)}
+    .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm)}
+    .card img{aspect-ratio:16/10;object-fit:cover;width:100%}
+    .card-body{padding:var(--space-5)}
+    .kicker{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary)}
+    .card h3{margin:.4rem 0 .5rem;font-size:var(--text-lg)}
+    .card p{margin:0 0 1rem;color:var(--color-text-muted)}
+    .map-wrap{border-top:1px solid var(--color-border);background:var(--color-surface-2)}
+    iframe{width:100%;height:260px;border:0;display:block}
+    table{width:100%;border-collapse:collapse;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;display:block}
+    thead,tbody,tr{display:table;width:100%;table-layout:fixed}
+    th,td{padding:1rem;border-bottom:1px solid var(--color-border);text-align:left;vertical-align:top}
+    th{font-size:var(--text-sm);color:var(--color-text-muted);font-weight:700;background:var(--color-surface-2)}
+    tr:last-child td{border-bottom:none}
+    .pill{display:inline-block;padding:.35rem .7rem;border-radius:999px;background:color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));color:var(--color-primary);font-size:var(--text-xs)}
+    .timeline{display:grid;gap:var(--space-4)}
+    .slot{display:grid;grid-template-columns:140px 1fr;gap:var(--space-4);padding:var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+    .slot time{font-weight:700;color:var(--color-primary)}
+    footer{padding:var(--space-10) 0 var(--space-16);color:var(--color-text-muted)}
+    @media (max-width: 860px){
+      .hero-grid,.cards{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .slot{grid-template-columns:1fr}
+      .nav{align-items:flex-start;flex-direction:column}
+      .navlinks{gap:.75rem}
+      h1{max-width:none}
+      thead{display:none}
+      table,tbody,tr,td{display:block;width:100%}
+      td{padding:.8rem 1rem}
+      td::before{content:attr(data-label);display:block;font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-bottom:.2rem}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Rajasthan trip plan home">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16c4-1 6-7 8-7s4 6 8 7"/><path d="M6 18h12"/><circle cx="12" cy="7" r="2.2"/></svg>
+        </span>
+        <strong>Rajasthan Trip</strong>
+      </a>
+      <nav class="navlinks" aria-label="Sections">
+        <a href="#travel">Travel</a>
+        <a href="#stays">Stays</a>
+        <a href="#udaipur">Udaipur</a>
+        <a href="#places">Places</a>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="top">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Travel + stays + sightseeing</span>
+          <h1>Jodhpur, Jawai, Udaipur, Shivganj.</h1>
+          <p>A clean, shareable itinerary page with intercity travel, stay ideas, Udaipur sightseeing slots, place previews, and embedded maps for quick planning on phone or desktop.</p>
+        </div>
+        <aside class="hero-card" aria-label="Trip snapshot">
+          <span class="pill">Snapshot</span>
+          <div class="stats">
+            <div class="stat"><b>4</b><span>Major stops</span></div>
+            <div class="stat"><b>2</b><span>Udaipur segments</span></div>
+            <div class="stat"><b>6+</b><span>Place ideas</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container" id="travel">
+      <div class="section-head">
+        <h2>Intercity travel</h2>
+        <p>The table below keeps the routing legible and works well as a single-page reference while moving between towns.</p>
+      </div>
+      <table aria-label="Intercity travel plan">
+        <thead><tr><th>Day</th><th>Route</th><th>Mode / Operator</th><th>Time</th><th>Duration</th><th>Approx. cost</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Day">1</td><td data-label="Route">Jodhpur → Sumerpur</td><td data-label="Mode / Operator">Bus – Chanakya Travels</td><td data-label="Time">12:30–15:10</td><td data-label="Duration">2h 40m</td><td data-label="Approx. cost">₹900 – 2 seats</td></tr>
+          <tr><td data-label="Day">1</td><td data-label="Route">Sumerpur → Jawai Bandh</td><td data-label="Mode / Operator">Auto / Cab</td><td data-label="Time">~15:15–16:00</td><td data-label="Duration">~45 min</td><td data-label="Approx. cost">Local fare</td></tr>
+          <tr><td data-label="Day">2</td><td data-label="Route">Jawai Bandh → Sumerpur</td><td data-label="Mode / Operator">Auto / Cab</td><td data-label="Time">~08:00–08:45</td><td data-label="Duration">~45 min</td><td data-label="Approx. cost">Local fare</td></tr>
+          <tr><td data-label="Day">2</td><td data-label="Route">Sumerpur → Udaipur</td><td data-label="Mode / Operator">Bus – Hey Rajeshwar</td><td data-label="Time">09:15–12:30</td><td data-label="Duration">3h 15m</td><td data-label="Approx. cost">₹730 – 2 seats</td></tr>
+          <tr><td data-label="Day">3</td><td data-label="Route">Udaipur → Shivganj</td><td data-label="Mode / Operator">Bus – Hey Rajeshwar</td><td data-label="Time">17:05–20:15</td><td data-label="Duration">3h 10m</td><td data-label="Approx. cost">₹730 – 2 seats</td></tr>
+          <tr><td data-label="Day">4</td><td data-label="Route">Shivganj → Jodhpur</td><td data-label="Mode / Operator">Bus – Chanakya Travels</td><td data-label="Time">11:45–14:00</td><td data-label="Duration">2h 15m</td><td data-label="Approx. cost">₹1,950 – 1 sleeper</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="container" id="stays">
+      <div class="section-head">
+        <h2>Stays</h2>
+        <p>These are grouped by stop so the page doubles as an accommodation shortlist.</p>
+      </div>
+      <table aria-label="Stay options">
+        <thead><tr><th>Location</th><th>Type</th><th>Options / Notes</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Location">Jawai Bandh</td><td data-label="Type">Airbnb / Camp</td><td data-label="Options / Notes">HACRA Experience (~₹4,500) or Jawai Bera Leopard Camp (~₹6,000) or other Airbnb.</td></tr>
+          <tr><td data-label="Location">Udaipur</td><td data-label="Type">Airbnb / Hotel</td><td data-label="Options / Notes">Sajjanpreet Haveli (~₹5,000) or a similar old-city haveli.</td></tr>
+          <tr><td data-label="Location">Shivganj</td><td data-label="Type">Friend’s place</td><td data-label="Options / Notes">Friend stay (₹0).</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="container" id="udaipur">
+      <div class="section-head">
+        <h2>Udaipur slots</h2>
+        <p>This follows the earlier assumption: reach stay by around 13:00 on arrival day and leave Udaipur the next day in time for the 17:05 bus.</p>
+      </div>
+      <div class="cards" style="grid-template-columns:1fr 1fr;">
+        <div class="card"><div class="card-body"><span class="kicker">Day 2</span><h3>Arrival afternoon & evening</h3><div class="timeline">
+          <div class="slot"><time>13:00–14:00</time><div><strong>Check-in + lunch</strong><br><span>Drop bags, eat nearby, and keep the first hour light.</span></div></div>
+          <div class="slot"><time>14:30–16:30</time><div><strong>City Palace</strong><br><span>Main palace block and museum time.</span></div></div>
+          <div class="slot"><time>16:45–17:30</time><div><strong>Jagdish Temple</strong><br><span>Quick darshan and architecture stop.</span></div></div>
+          <div class="slot"><time>17:30–18:30</time><div><strong>Gangaur Ghat + Bagore area</strong><br><span>Street wandering and lakeside photos.</span></div></div>
+          <div class="slot"><time>18:30–19:30</time><div><strong>Ambrai Ghat / Pichola edge</strong><br><span>Sunset views and a relaxed walk.</span></div></div>
+          <div class="slot"><time>19:30–21:00</time><div><strong>Dinner</strong><br><span>Rooftop or lakeside dinner in the old city.</span></div></div>
+        </div></div></div>
+        <div class="card"><div class="card-body"><span class="kicker">Day 3</span><h3>Morning & early afternoon</h3><div class="timeline">
+          <div class="slot"><time>08:00–09:30</time><div><strong>Ropeway or boat ride</strong><br><span>Pick one depending on weather and energy.</span></div></div>
+          <div class="slot"><time>10:00–12:00</time><div><strong>Shilpgram or old-city cafés</strong><br><span>Craft village if you want movement, cafés if you want it lighter.</span></div></div>
+          <div class="slot"><time>12:00–13:30</time><div><strong>Lunch + pack</strong><br><span>Return to the stay and reset before departure.</span></div></div>
+          <div class="slot"><time>13:30–15:00</time><div><strong>Sajjangarh or extra lake time</strong><br><span>Choose Monsoon Palace only if travel buffer is comfortable.</span></div></div>
+          <div class="slot"><time>15:30–16:00</time><div><strong>Head out</strong><br><span>Move toward the pickup point or bus stand.</span></div></div>
+        </div></div></div>
+      </div>
+    </section>
+
+    <section class="container" id="places">
+      <div class="section-head">
+        <h2>Places & maps</h2>
+        <p>These cards make the page more visual and keep location lookup quick during the trip.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/37d11a61b5fd481433e72d083877b31b271c1c23.jpg" alt="Panoramic view of City Palace in Udaipur" width="2000" height="1252" loading="lazy">
+          <div class="card-body"><span class="kicker">Udaipur</span><h3>City Palace</h3><p>Best as the first major stop after check-in, with enough time for courtyards, museum sections, and palace views.</p></div>
+          <div class="map-wrap"><iframe title="Map of City Palace Udaipur" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=City+Palace+Udaipur&output=embed"></iframe></div>
+        </article>
+        <article class="card">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/bc70d51c59bcb9b38b568e399e6b3bc2fda9e9d4.jpg" alt="Lake Pichola at golden hour in Udaipur" width="1536" height="1024" loading="lazy">
+          <div class="card-body"><span class="kicker">Udaipur</span><h3>Lake Pichola & Ambrai side</h3><p>Ideal for sunset, boat views, and the classic palace-facing evening walk.</p></div>
+          <div class="map-wrap"><iframe title="Map of Lake Pichola Udaipur" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Lake+Pichola+Udaipur&output=embed"></iframe></div>
+        </article>
+        <article class="card">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/ea55f6be96831d2822ac7658493b545695b08e14.jpg" alt="Courtyard inside City Palace Museum Udaipur" width="800" height="800" loading="lazy">
+          <div class="card-body"><span class="kicker">Old city</span><h3>Jagdish Temple & Gangaur Ghat</h3><p>Works well as a shorter walking block between palace time and sunset views.</p></div>
+          <div class="map-wrap"><iframe title="Map of Jagdish Temple Udaipur" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Jagdish+Temple+Udaipur&output=embed"></iframe></div>
+        </article>
+        <article class="card">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/68cd444ba5288f3f8d2aa6e213ce639673ab0207.jpg" alt="Leopard family in Jawai landscape" width="600" height="459" loading="lazy">
+          <div class="card-body"><span class="kicker">Jawai Bandh</span><h3>Leopard safari zone</h3><p>Use this stop for the evening or next-morning safari block, depending on arrival and camp schedule.</p></div>
+          <div class="map-wrap"><iframe title="Map of Jawai Bandh Rajasthan" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Jawai+Bandh+Rajasthan&output=embed"></iframe></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>Built as a compact itinerary page so it is easy to open on phone while traveling and still readable enough to share before the trip.</p>
+  </footer>
+
+  <script>
+    (function(){
+      const btn=document.querySelector('[data-theme-toggle]');
+      const root=document.documentElement;
+      let mode=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      root.setAttribute('data-theme',mode);
+      const icon=(m)=>m==='dark'
+        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      btn.innerHTML=icon(mode);
+      btn.setAttribute('aria-label','Switch to '+(mode==='dark'?'light':'dark')+' mode');
+      btn.addEventListener('click',()=>{
+        mode=mode==='dark'?'light':'dark';
+        root.setAttribute('data-theme',mode);
+        btn.innerHTML=icon(mode);
+        btn.setAttribute('aria-label','Switch to '+(mode==='dark'?'light':'dark')+' mode');
+      });
+    })();
+  </script>
+</body>
+</html>
